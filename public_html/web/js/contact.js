@@ -1,11 +1,12 @@
-$(document).ready(function () {
+$(document).ready(function() {
     $('div#output').hide();
     //bind send message here
     $('#send').click(sendMessage);
-    $('button.close').live('click', function () {
+    $('button.close').live('click', function() {
         $(this).parent().find('p').html('');
         $(this).parent().hide();
     });
+
 });
 
 /* Contact Form */
@@ -18,7 +19,7 @@ function checkEmail(email) {
 }
 
 function sendMessage() {
-    
+
     // receive the provided data
     var name = $("input#name").val();
     var email = $("input#email").val();
@@ -45,7 +46,7 @@ function sendMessage() {
         url: 'contact.php',
         data: dataString,
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 0) {
                 var errors = '<ul><li>';
                 if (data.name_msg != '')
@@ -63,7 +64,7 @@ function sendMessage() {
             }
 
         },
-        error: function (error) {
+        error: function(error) {
             $("div#output").removeClass('alert-success').addClass('alert-error').show().html('<button type="button" class="close" data-dismiss="alert">x</button><p> Could not complete your request. See the error below!</p>' + error.statusText);
         }
     });
